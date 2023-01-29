@@ -1,5 +1,5 @@
 from flask import Blueprint
-import logging
+import logging, jsonify
 from app.dao.post_dao import PostDAO
 
 
@@ -17,7 +17,7 @@ def api_posts():
     """Возвращает все посты в формате JSON"""
     posts = post_dao.get_json()
     logging.info('Запрошены все посты')  # Логгирование запроса всех постов
-    return posts
+    return jsonify(posts)
 
 
 @api_one.route('/api/posts/<int:post_id>')
